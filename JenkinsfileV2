@@ -24,7 +24,7 @@ pipeline{
             }
         }
 
-        statge('Deployments...') {
+        stage('Deployments...') {
             parellel{
                 stage('Deploy to Staging'){
                     steps{
