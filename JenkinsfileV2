@@ -24,16 +24,18 @@ pipeline{
             }
         }
 
-        stage('Deployments...') {
-            parellel{
-                stage('Deploy to Staging'){
-                    steps{
+        stage ('Deployments'){
+
+            parallel {
+
+                stage ('Deploy to Staging'){
+                    steps {
                         cmd "copy **/*.war ${tomcat_dev}"
                     }
                 }
 
-                stage('Deploy to Production'){
-                    steps{
+                stage ('Deploy to Production'){
+                    steps {
                         cmd "copy **/*.war ${tomcat_prod}"
                     }
                 }
