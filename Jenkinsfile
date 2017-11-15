@@ -17,6 +17,25 @@ pipeline {
                 steps{
                     build job: 'MvnPrj-deploy-to-staging'
                 }
+            }
+
+            stage('Deploy to Production'){
+                steps{
+                    timeout(time:5, unit:'DAYS'){
+                        input message: 'Approve PROD Deployment?'
+                    }
+
+                    build job: 'MvnPrj-deploy-to-prod'
+                }
+                post{
+                    success {
+                        echo 'Code deployed to Prodution.'
+                    }
+
+                    failure {
+                        echo 'Deployment failed.'
+                    }
+                }
             }        
         }
 }
