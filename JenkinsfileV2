@@ -31,16 +31,16 @@ pipeline{
                 stage ('Deploy to Staging'){
                     
                     steps {
-                        echo 'copy ${deploy_file} ${tomcat_dev}'
-                        bat "copy ${deploy_file} ${tomcat_dev}"
+                        echo 'copy ${params.deploy_file} ${params.tomcat_dev}'
+                        bat "copy ${params.deploy_file} ${params.tomcat_dev}"
                     }
                 }
 
                 stage ('Deploy to Production'){
                     
                     steps {
-                        echo 'copy ${deploy_file} ${tomcat_prod}'
-                        bat "copy ${deploy_file} ${tomcat_prod}"
+                        echo 'copy ${params.deploy_file} ${params.tomcat_prod}'
+                        bat "copy ${params.deploy_file} ${params.tomcat_prod}"
                     }
                 }
             }
