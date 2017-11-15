@@ -1,0 +1,45 @@
+pipeline{
+    agent any
+    
+    parameters{
+        string(name:'tomcat_dev', defaultValue:'C:/Data/devtools/apache-tomcat-8.5.23/webapps', description:'Development server')
+        string(name:'tomcat_prod', defaultValue:'C:/Data/devtools/apache-tomcat-PROD/webapps', description:'Production server')
+    }
+
+    triggers{
+        pollSCM('* * * *')
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                cmd 'mvn clean package'
+            }
+
+            post {
+                success {
+                    echo 'Archiving now...'
+                    archiveArtifacts artifacts: '**/*.war' 
+                }
+            }
+        }
+
+        statge('Deployments...') {
+            parellel{
+                stage('Deploy to Staging'){
+                    steps{
+                        cmd "copy **/*.war ${tomcat_dev}"
+                    }
+                }
+
+                stage('Deploy to Production'){
+                    steps{
+                        cmd "copy **/*.war ${tomcat_prod}"
+                    }
+                }
+            }
+        }
+        
+    }
+
+}
