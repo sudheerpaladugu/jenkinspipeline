@@ -2,9 +2,9 @@ pipeline{
     agent any
     
     parameters{
-        string(name:'tomcat_dev', defaultValue:'C:/Data/devtools/apache-tomcat-8.5.23/webapps', description:'Development server')
-        string(name:'tomcat_prod', defaultValue:'C:/Data/devtools/apache-tomcat-PROD/webapps', description:'Production server')
-        string(name:'deploy_file', defaultValue: 'webapps/target/webapp.war', description:'To copy file from target directory for deployment')
+        string(name:'tomcat_dev', defaultValue:'C:\Data\devtools\apache-tomcat-8.5.23\webapps', description:'Development server')
+        string(name:'tomcat_prod', defaultValue:'C:\Data\devtools\apache-tomcat-PROD\webapps', description:'Production server')
+        string(name:'deploy_file', defaultValue: 'webapp\target\webapp.war', description:'To copy file from target directory for deployment')
     }
 
     triggers{
