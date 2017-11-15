@@ -29,15 +29,17 @@ pipeline{
             parallel {                
 
                 stage ('Deploy to Staging'){
-                    echo 'copy ${deploy_file} ${tomcat_dev}'
+                    
                     steps {
+                        echo 'copy ${deploy_file} ${tomcat_dev}'
                         bat "copy ${deploy_file} ${tomcat_dev}"
                     }
                 }
 
                 stage ('Deploy to Production'){
-                    echo 'copy ${deploy_file} ${tomcat_prod}'
+                    
                     steps {
+                        echo 'copy ${deploy_file} ${tomcat_prod}'
                         bat "copy ${deploy_file} ${tomcat_prod}"
                     }
                 }
