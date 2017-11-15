@@ -30,13 +30,13 @@ pipeline{
 
                 stage ('Deploy to Staging'){
                     steps {
-                        cmd "copy **/*.war ${tomcat_dev}"
+                        cmd "copy **/target/*.war ${tomcat_dev}"
                     }
                 }
 
                 stage ('Deploy to Production'){
                     steps {
-                        cmd "copy **/*.war ${tomcat_prod}"
+                        cmd "copy **/target/*.war ${tomcat_prod}"
                     }
                 }
             }
